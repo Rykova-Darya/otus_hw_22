@@ -4,7 +4,7 @@ namespace App\Services;
 
 class Dijkstra
 {
-    public function dijkstra(array $A, array $weights, int $N, int $start): array
+    public function dijkstra(array $A, array $weights, int $N, int $start, int $target = null): array
     {
         $dist = array_fill(0, $N, PHP_INT_MAX);
         $prev = array_fill(0, $N, -1);
@@ -16,6 +16,10 @@ class Dijkstra
         while (!$pq->isEmpty()) {
             [$d, $u] = $pq->extractMin();
 
+            //Если мы передаем в метод конечную вершину, то необходимо выйти из цикла
+            if (!is_null($target) && $u === $target) {
+                break;
+            }
             foreach ($A[$u] as $i => $v) {
                 $weight = $weights[$u][$i];
                 if ($dist[$v] > $d + $weight) {

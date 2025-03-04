@@ -55,8 +55,9 @@ class DijkstraCommand extends Command
 
         $N = count($A);
         $start = 0;
+        $target = 5;
         $dijkstra = new Dijkstra();
-        $result = $dijkstra->dijkstra($A, $weights, $N, $start);
+        $result = $dijkstra->dijkstra($A, $weights, $N, $start, $target);
 
         /** @var Edge $edge */
         foreach ($result as $edge) {
